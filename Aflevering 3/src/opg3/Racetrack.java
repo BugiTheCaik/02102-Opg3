@@ -1,7 +1,7 @@
 package opg3;
 
 import java.util.Scanner;
-//jjj
+// ssdsd
 public class Racetrack {
 
 	private static double X = 0; // X-Coordinate
