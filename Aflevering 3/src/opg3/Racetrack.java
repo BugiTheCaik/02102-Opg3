@@ -1,7 +1,7 @@
 package opg3;
 
 import java.util.Scanner;
-// ssdsd
+
 
 public class Racetrack {
 
@@ -16,7 +16,28 @@ public class Racetrack {
 	private static Scanner console = new Scanner(System.in);
 	
 	public static void main(String[] args) {
+
 		InitMap(); // Draw racetrack & Player
+		StdDraw.setPenColor(StdDraw.BLACK); // Draw lines in race course
+		StdDraw.setPenRadius(0.1/50); 
+		// 1
+		StdDraw.line(12, 12, 12, 24);
+
+		
+		// 2
+		//StdDraw.line(12, -12, 24, -12);
+		
+		// 2
+		StdDraw.line(12, -12, 12, -24);
+		
+		// 3
+		StdDraw.line(-12, -12, -12, -24);
+		
+		// 4
+		StdDraw.line(-12, 12, -12, 24);
+		
+		// 4
+		//StdDraw.line(12, -12, 12, -24);
 		while(Running()) { // Continue the race until finish or collision.
 			NextMove(); // Get user input and calculate next move
 			CheckPoints(); // Ensure user follows entire race course
@@ -90,15 +111,48 @@ public class Racetrack {
 	
 	
 	private static void CheckPoints() { // Ensure player crosses race course.
-		if (CheckP == 0 && X > 0 && Y < 0) {
-			CheckP ++;
+		// 0. block.
+		if (X > -12 && X < 12 && Y > 12 && Y < 24) {
+			if (CheckP == 1) {
+				System.out.println("You can not go back!");
+			}
+				
+			
 		}
-		else if (CheckP == 1 && X < 0 && Y < 0) {
-			CheckP ++;
+		
+		// 1. block.
+		if (X > 12 && X < 24 && Y > -24 && Y < 24) {
+			if (CheckP == 0) {
+				CheckP ++;
+			}
+			
+			if (CheckP == 2) {
+				System.out.println("You can not go back!");
+			}
 		}
-		else if (CheckP == 2 && X < 0 && Y > 0) {
-			CheckP ++;
+		
+		// 2. block.
+		if (X > -12 && X < 12 && Y > -24 && Y < -12) {
+			if (CheckP == 1) {
+				CheckP ++;
+			}
+			
+			if (CheckP == 3) {
+				System.out.println("You can not go back!");
+			}
 		}
+		
+		// 3. block.
+		if (X < -12 && X > -24 && Y > -24 && Y < 24) {
+			if (CheckP == 2) {
+				CheckP ++;
+			}
+			
+			if (CheckP == 0) {
+				System.out.println("You can not go back!");
+			}
+		}		
+
 		
 	}
 	
@@ -111,6 +165,9 @@ public class Racetrack {
 		
 		StdDraw.setPenColor(StdDraw.BLACK); // Draw lines in race course
 		StdDraw.setPenRadius(0.1/50); 
+		
+
+		/**
 		for (int x = -23; x < 24; x++) {
 			for (int y = -23; y < 24; y++) {
 				StdDraw.line(x, -24, x, 24);
@@ -118,9 +175,9 @@ public class Racetrack {
 				
 			}
 		}
-		
+		**/
 		StdDraw.setPenColor(StdDraw.WHITE); // Remove center part of course
-		StdDraw.filledSquare(0,0,12);
+		StdDraw.filledSquare(0,0,12);  // Draw white square.
 		
 		for (double y = 23.5; y >= 12; y--) { // Draw Finish line
 			if (y % 2 == 0.5) {
