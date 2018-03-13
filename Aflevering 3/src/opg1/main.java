@@ -8,7 +8,7 @@ public class main {
 		boolean Running = true;
 		// Konstruktør for Scanner.
 		Scanner console = new Scanner(System.in);
-		Long Checknumber;
+		long Checknumber;
 
 		while (Running) {
 			System.out.print("Indtast et tal større end 1: ");
@@ -41,29 +41,45 @@ public class main {
 	// Denne metode bestemmer primtalfaktorerne.
 	// Pre-betingelse: Tal som skal kontrolleres.
 	// Post-betingelse: Returnere primtalfaktorerne.
-	public static String PrimeFactors(Long CheckNumber) {
-		Long TempChecknumber = CheckNumber;
+	public static String PrimeFactors(long CheckNumber) {
+		long TempChecknumber = CheckNumber;
 		String Text ="";
-		// Kør fra 2 til CheckNumber. 
-		for (long i=2; i<CheckNumber; i++) {
-
+		long i = 2;
+	
+		while (i <CheckNumber) {
 			
-			// Kør så længe divisionen giver et helta.
 			while ((TempChecknumber % i) == 0) {
-				
-				// Da divisionen giver et heltal, kan vi fuldføre divisionen.
-				TempChecknumber = TempChecknumber / i;	
-				
-				Text += i + ", ";
-				
+					
+					// Da divisionen giver et heltal, kan vi fuldføre divisionen.
+					TempChecknumber = TempChecknumber / i;	
+					
+					Text += i + ", ";
+					
 			}
 		
-
+			i = i + 1L;	
 		}
+		// Kør fra 2 til CheckNumber. 
+		//for (long i=2; i<CheckNumber; i++) {
+			//System.out.println(i);
+			
+			// Kør så længe divisionen giver et helta.
+			/*'
+	
+		**/
+
+		//}
+		
+		if (Text.length() >= 2)  {
 		// Retunere primtaltaktorer.
-		return Text.substring(0, Text.length() - 2);
+			return Text.substring(0, Text.length() - 2);
+		}
+		else {
+			return "Ingen.";
+		}
 		
 	}
+
 	
 	// Denne metode afgøre om en streng kun indeholder tal.
 	// Pre-betingelse: input skal være en streng og ikke tom.
