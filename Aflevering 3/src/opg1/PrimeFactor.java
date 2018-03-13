@@ -2,7 +2,7 @@ package opg1;
 
 import java.util.Scanner;
 
-public class main {
+public class PrimeFactor {
 	
 	public static void main(String[] arg) {
 		boolean Running = true;
@@ -11,7 +11,7 @@ public class main {
 		long Checknumber;
 
 		while (Running) {
-			System.out.print("Indtast et tal stÃ¸rre end 1: ");
+			System.out.print("Indtast et tal større end 1: ");
 			String CheckNumber = console.nextLine();
 			
 			// Hvis input er et tal.
@@ -35,7 +35,7 @@ public class main {
 			System.out.println(" ");	
 		
 		}
-		
+		console.close();
 	}
 
 	// Denne metode bestemmer primtalfaktorerne.
@@ -44,21 +44,22 @@ public class main {
 	public static String PrimeFactors(long CheckNumber) {
 		long TempChecknumber = CheckNumber;
 		String Text ="";
-		long i = 2;
-	
-		while (i <CheckNumber) {
-			
-			while ((TempChecknumber % i) == 0) {
-					
-					// Da divisionen giver et heltal, kan vi fuldfÃ¸re divisionen.
-					TempChecknumber = TempChecknumber / i;	
-					
-					Text += i + ", ";
-					
-			}
 		
-			i = i + 1L;	
+		while ((TempChecknumber % 2) == 0) { // Ved at teste primtallet 2 først, halveres mængden af tal som skal tjekkes.
+			
+			// Da divisionen giver et heltal, kan vi fuldfÃ¸re divisionen.
+			TempChecknumber = TempChecknumber / 2;	
+			Text += 2 + ", ";
 		}
+		
+		for (long i = 3; i*i <= TempChecknumber; i+=2) { // Resterende talmængde testes enkeltvis.
+			while ((TempChecknumber % i) == 0) {
+				// Da divisionen giver et heltal, kan vi fuldfÃ¸re divisionen.
+				TempChecknumber = TempChecknumber / i;	
+				Text += i + ", ";
+			}
+		}
+		
 		// KÃ¸r fra 2 til CheckNumber. 
 		//for (long i=2; i<CheckNumber; i++) {
 			//System.out.println(i);
