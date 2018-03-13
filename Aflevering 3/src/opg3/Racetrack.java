@@ -46,7 +46,7 @@ public class Racetrack {
 
 			CheckPoints(PlayerData[Player]); // Ensure user follows entire race course
 			
-			Draw(PlayerData[Player]); // Draw the player 1 movement
+			Draw(PlayerData[Player]); // Draw the player movement
 			
 
 		}
@@ -106,14 +106,25 @@ public class Racetrack {
 				Data[AvX] ++;
 				Data[AvY] ++;
 			}
-			else {
-				System.out.println("Please input a value between 1-9");
+			else { // Value was outside 1-9 range, get new value by calling NextMove() again.
+				System.out.print("Please enter a value between 1-9:");
+				NextMove(Data);
+				return; // NextMove has finished, avoid multiplying turn.
 			}
+			console.nextLine(); // Remove new line after using our value (/n triggers multiple prints of "Enter value between 1-9!")
 		}
+		else { // Input was not a value, get new value by calling NextMove() again.
+			System.out.print("Please enter a value between 1-9!:");
+			console.nextLine(); // Ignore latest input.
+			NextMove(Data);  
+			return; // Avoid multiplying turn by returning to original loop.
+		}
+		
 		Data[AX] += Data[AvX];
 		Data[AY] += Data[AvY];
 
 		Data[ATurns]++; // Count turns (Competitive aspect of game)
+
 	}
 	
 	private static boolean Running(double[] Data) { // Game ends if player crashes or wins.
