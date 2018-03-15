@@ -108,6 +108,7 @@ public class Racetrack {
 			}
 			else { // Value was outside 1-9 range, get new value by calling NextMove() again.
 				System.out.print("Please enter a value between 1-9:");
+				console.nextLine();
 				NextMove(Data);
 				return; // NextMove has finished, avoid multiplying turn.
 			}
@@ -156,8 +157,7 @@ public class Racetrack {
 			if (Data[ACheckP]  == 1) {
 				System.out.println("You can not go back!");
 			}
-				
-			
+
 		}
 		
 		// 1. block.
