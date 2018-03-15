@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class PrimeFactor {
 	
+	
 	public static void main(String[] arg) {
 		boolean Running = true;
 		// Konstruktør for Scanner.
@@ -11,16 +12,17 @@ public class PrimeFactor {
 		long Checknumber;
 
 		while (Running) {
-			System.out.print("Indtast et tal st�rre end 1: ");
+			System.out.print("Indtast et tal større end 1: ");
 			String CheckNumber = console.nextLine();
 			
-			// Hvis input er et tal.
+			// Hvis input er et tal.ll
 			if (isNumeric(CheckNumber)) {
 				Checknumber = Long.parseLong(CheckNumber);
-				
+				// Kun til at teste om størst mulige long virker
+				//Checknumber = 9223372036854775807L;
 				// Hvis input er større end 1.
 				if (Checknumber > 1) {
-				System.out.println("Primtalfaktorer: " + PrimeFactors(Checknumber));	
+					PrimeFactors(Checknumber);
 				}
 				// Hvis input er 0.
 				else if (Checknumber == 0) {
@@ -35,53 +37,46 @@ public class PrimeFactor {
 			System.out.println(" ");	
 		
 		}
-		console.close();
+		
 	}
 
 	// Denne metode bestemmer primtalfaktorerne.
 	// Pre-betingelse: Tal som skal kontrolleres.
 	// Post-betingelse: Returnere primtalfaktorerne.
-	public static String PrimeFactors(long CheckNumber) {
-		long TempChecknumber = CheckNumber;
+	public static void PrimeFactors(long CheckNumber) {
+		//long TempChecknumber = CheckNumber;
 		String Text ="";
-		
-		while ((TempChecknumber % 2) == 0) { // Ved at teste primtallet 2 f�rst, halveres m�ngden af tal som skal tjekkes.
-			
-			// Da divisionen giver et heltal, kan vi fuldføre divisionen.
-			TempChecknumber = TempChecknumber / 2;	
-			Text += 2 + ", ";
-		}
-		
-		for (long i = 3; i*i <= TempChecknumber; i+=2) { // Resterende talm�ngde testes enkeltvis.
-			while ((TempChecknumber % i) == 0) {
-				// Da divisionen giver et heltal, kan vi fuldføre divisionen.
-				TempChecknumber = TempChecknumber / i;	
-				Text += i + ", ";
-			}
-		}
-		
-		// Kør fra 2 til CheckNumber. 
-		//for (long i=2; i<CheckNumber; i++) {
-			//System.out.println(i);
-			
-			// Kør så længe divisionen giver et helta.
-			/*'
-	
-		**/
 
-		//}
+	
+		for (long i=2; i<CheckNumber; i++) {
+	
+			while (CheckNumber % i == 0) {
+					
+					// Da divisionen giver et heltal, kan vi fuldføre divisionen.
+				CheckNumber /= i;	
+					
+				Text += i + ", ";
+	
+			}
+			
+
+		
+		}
+
+
+		System.out.println("");
+		System.out.print(" Primtalfaktorer: ");
 		
 		if (Text.length() >= 2)  {
 		// Retunere primtaltaktorer.
-			return Text.substring(0, Text.length() - 2);
+			System.out.println(Text.substring(0, Text.length() - 2));
 		}
 		else {
-			return "Ingen.";
+			System.out.println("Ingen.");
 		}
 		
 	}
 
-	
 	// Denne metode afgøre om en streng kun indeholder tal.
 	// Pre-betingelse: input skal være en streng og ikke tom.
 	// Post-betingelse: result fortæller om strengen kun indeholder tal. Dette returneres, 
