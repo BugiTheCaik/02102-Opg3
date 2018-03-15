@@ -14,7 +14,7 @@ public class main {
 			System.out.print("Indtast et tal større end 1: ");
 			String CheckNumber = console.nextLine();
 			
-			// Hvis input er et tal.
+			// Hvis input er et tal.ll
 			if (isNumeric(CheckNumber)) {
 				Checknumber = Long.parseLong(CheckNumber);
 				// Kun til at teste om størst mulige long virker
